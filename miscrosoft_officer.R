@@ -9,4 +9,3 @@ ft <- theme_vanilla(ft)
 ft <- add_footer_lines(ft, "Daily air quality measurements in New York, May to September 1973.")
 ft <- color(ft, part = "footer", color = "#666666")
 ft <- set_caption(ft, caption = "New York Air Quality Measurements")
-ft
