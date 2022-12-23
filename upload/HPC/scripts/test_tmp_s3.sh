@@ -140,26 +140,12 @@ paste subjects.tmp $midfile > file.tmp
 cat file.tmp >> ${finalfile}
 
 #----------------------------------------------------------------------------------------
-#task5: Combine the genotype and phenotype together
+#task5: make the output file
 
 cd /scratch/c.c2090628/Output/CHR_$chr/second
 
 filename_1="/scratch/c.c2090628/Output/CHR_$chr/second/Output_Human_STR_genotype.txt"
-filename_2="/scratch/scw1193/WES_HMvHH/ukb_seq_HMvHH_phens_2021-10-09.txt"
-filename_3="/scratch/scw1193/WES_HMvHH/*.cram"
-filename_4="/scratch/c.c2090628/Output/HM_SubjectsID.txt"
 filename_output="/scratch/c.c2090628/Output/CHR_${chr}/second/HM_CHR${chr}_Output_final.txt"
 
-
-#Change names into real ID and combine phenotype and genotype 
-head -n 1 $filename_1 > file1.tmp
-join <(sort $filename_4) <(sort $filename_1) | awk '!($1="")' >> file1.tmp
-
-line1=$(head -n 1 file1.tmp )
-line2=$(head -n 1 $filename_2 | awk '!($1="")')
-
-echo "${line1} ${line2}" > file2.tmp
-join <(sort file1.tmp) <(sort $filename_2) >> file2.tmp
-
-cp file2.tmp $filename_output
+cp $filename_1 $filename_output
 
